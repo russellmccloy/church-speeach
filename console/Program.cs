@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Audio;
+using NAudio.Wave;
 
 class Program 
 {
@@ -37,7 +38,7 @@ class Program
     async static Task Main(string[] args)
     {
         string wavFilePath = "output.wav";
-        ConvertMp3ToWav("input.mp3", wavFilePath);
+        ConvertMp3ToWav("C:\\Users\\russe\\code\\church-speech\\console\\input.mp3", wavFilePath);
 
         var speechConfig = SpeechConfig.FromSubscription(speechKey, speechRegion);        
         speechConfig.SpeechRecognitionLanguage = "en-US";
