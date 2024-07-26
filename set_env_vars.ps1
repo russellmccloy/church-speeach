@@ -1,0 +1,2 @@
+$env:SPEECH_KEY = "311f579f4761485ea23e05d08c145757"
+$env:SPEECH_REGION = "australiaeast"
