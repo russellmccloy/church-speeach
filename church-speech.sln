@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "console", "console\console.csproj", "{5DE77841-37FC-4D2B-A8FF-C71B317CD674}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChurchSpeech", "ChurchSpeech\ChurchSpeech.csproj", "{8F191A34-D4B8-47A5-8673-019B00ABD6BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{5DE77841-37FC-4D2B-A8FF-C71B317CD674}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DE77841-37FC-4D2B-A8FF-C71B317CD674}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DE77841-37FC-4D2B-A8FF-C71B317CD674}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F191A34-D4B8-47A5-8673-019B00ABD6BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F191A34-D4B8-47A5-8673-019B00ABD6BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F191A34-D4B8-47A5-8673-019B00ABD6BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F191A34-D4B8-47A5-8673-019B00ABD6BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -48,7 +48,7 @@ class Program
         //using var audioConfig = AudioConfig.FromWavFileInput("output.wav");
         using var speechRecognizer = new SpeechRecognizer(speechConfig, audioConfig);
 
-        Console.WriteLine("Speak into your microphone.");
+        //Console.WriteLine("Speak into your microphone.");
         var speechRecognitionResult = await speechRecognizer.RecognizeOnceAsync();
         OutputSpeechRecognitionResult(speechRecognitionResult);
     }
