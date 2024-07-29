@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
@@ -18,6 +19,12 @@ builder.Services.AddControllersWithViews(options =>
         .Build();
     options.Filters.Add(new AuthorizeFilter(policy));
 });
+builder.Services.Configure<FormOptions>(options =>
+{
+    //options.MultipartBodyLengthLimit = 52428800; // Set limit to 50 MB
+    options.MultipartBodyLengthLimit = 400 * 1024 * 1024; // 400 MB
+});
+
 builder.Services.AddRazorPages()
     .AddMicrosoftIdentityUI();
 

@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Speech Transcription";
+}
+
+<h2>Speech Transcription</h2>
+
+<form asp-action="TranscribeAudio" asp-controller="Speech" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="audioFile">Upload WAV file:</label>
+        <input type="file" name="audioFile" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Transcribe</button>
+</form>
+
+@if (ViewBag.Transcription != null)
+{
+    <h3>Transcription Result:</h3>
+    <p>@ViewBag.Transcription</p>
+}
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.Error
+    </div>
+}
