@@ -11,7 +11,7 @@ module appServicePlan './modules/appServicePlan.bicep' = {
   name: 'appServicePlan'
   params: {
     appServicePlanName: 'myAppServicePlan'
-    location: location
+    location: churchResourceGroup.location
   }
   scope: churchResourceGroup
 }
@@ -20,7 +20,7 @@ module appService './modules/appService.bicep' = {
   name: 'appService'
   params: {
     appServiceName: 'myAppService'
-    location: location
+    location: churchResourceGroup.location
     appServicePlanId: appServicePlan.outputs.id
   }
   scope: churchResourceGroup
@@ -30,7 +30,7 @@ module aiSpeechService './modules/aiSpeechService.bicep' = {
   name: 'aiSpeechService'
   params: {
     speechServiceName: 'mySpeechService'
-    location: location
+    location: churchResourceGroup.location
   }
   scope: churchResourceGroup
 }
@@ -39,7 +39,7 @@ module openAIService './modules/openAIService.bicep' = {
   name: 'openAIService'
   params: {
     openAIServiceName: 'myOpenAIService'
-    location: location
+    location: churchResourceGroup.location
   }
   scope: churchResourceGroup
 }
