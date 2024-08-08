@@ -1,4 +1,11 @@
-param location string = resourceGroup().location
+param location string // = resourceGroup().location
+
+targetScope = 'subscription'
+
+resource churchResourceGroup 'Microsoft.Resources/resourceGroups@2024-03-01' = {
+  name: 'churchspeech-ase-dev-rg'
+  location: location
+}
 
 module appServicePlan './modules/appServicePlan.bicep' = {
   name: 'appServicePlan'
@@ -6,6 +13,7 @@ module appServicePlan './modules/appServicePlan.bicep' = {
     appServicePlanName: 'myAppServicePlan'
     location: location
   }
+  scope: churchResourceGroup
 }
 
 module appService './modules/appService.bicep' = {
@@ -15,6 +23,7 @@ module appService './modules/appService.bicep' = {
     location: location
     appServicePlanId: appServicePlan.outputs.id
   }
+  scope: churchResourceGroup
 }
 
 module aiSpeechService './modules/aiSpeechService.bicep' = {
@@ -23,6 +32,7 @@ module aiSpeechService './modules/aiSpeechService.bicep' = {
     speechServiceName: 'mySpeechService'
     location: location
   }
+  scope: churchResourceGroup
 }
 
 module openAIService './modules/openAIService.bicep' = {
@@ -31,4 +41,5 @@ module openAIService './modules/openAIService.bicep' = {
     openAIServiceName: 'myOpenAIService'
     location: location
   }
+  scope: churchResourceGroup
 }
