@@ -71,7 +71,8 @@ Creating 'contributor' role assignment under scope '/subscriptions/7c3aee63-0f3a
 The output includes credentials that you must protect. Be sure that you do not include these credentials in your code or check the credentials into your source control. For more information, see https://aka.ms/azadsp-cli
 {
   "clientId": "6340058c-dc52-422b-a30d-fb8e0753e285",
-  "clientSecret": "ITS_A_SECRET",
+  "clientSecret": "ITS_A_SECRET
+  ",
   "subscriptionId": "7c3aee63-0f3a-404b-a9de-f784bb35db35",
   "tenantId": "574dbe58-968a-4a3a-b963-a15dfe350359",
   "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
