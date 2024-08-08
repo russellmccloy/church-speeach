@@ -24,10 +24,10 @@ jobs:
 
       - name: Deploy Bicep templates
         run: |
-          az deployment group create \
-            --resource-group <your-resource-group> \
+          az deployment group create 
+            --resource-group churchspeech-ase-dev-rg \
             --template-file main.bicep \
-            --parameters location=<your-location>
+            --parameters location=australiaeast
 
       - name: Log out from Azure
         run: az logout
