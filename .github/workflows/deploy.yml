@@ -34,6 +34,7 @@ jobs:
 
   build:
     runs-on: windows-latest
+    needs: deploy_infra
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET SDK
