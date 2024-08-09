@@ -1,0 +1,310 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.26.170.59819",
+      "templateHash": "154998245280332516"
+    }
+  },
+  "parameters": {
+    "location": {
+      "type": "string"
+    },
+    "prefix": {
+      "type": "string"
+    },
+    "regionCode": {
+      "type": "string"
+    },
+    "environment": {
+      "type": "string"
+    },
+    "suffix": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "preName": "[format('{0}-{1}-{2}', parameters('prefix'), parameters('regionCode'), parameters('environment'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/resourceGroups",
+      "apiVersion": "2024-03-01",
+      "name": "[format('{0}-{1}-rg', variables('preName'), parameters('suffix'))]",
+      "location": "[parameters('location')]"
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "appServicePlan",
+      "resourceGroup": "[format('{0}-{1}-rg', variables('preName'), parameters('suffix'))]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "appServicePlanName": {
+            "value": "[format('{0}-{1}-asp', variables('preName'), parameters('suffix'))]"
+          },
+          "location": {
+            "value": "[reference(subscriptionResourceId('Microsoft.Resources/resourceGroups', format('{0}-{1}-rg', variables('preName'), parameters('suffix'))), '2024-03-01', 'full').location]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.26.170.59819",
+              "templateHash": "8014212131643423508"
+            }
+          },
+          "parameters": {
+            "appServicePlanName": {
+              "type": "string"
+            },
+            "location": {
+              "type": "string",
+              "defaultValue": "[resourceGroup().location]"
+            }
+          },
+          "resources": [
+            {
+              "type": "Microsoft.Web/serverfarms",
+              "apiVersion": "2022-03-01",
+              "name": "[parameters('appServicePlanName')]",
+              "location": "[parameters('location')]",
+              "sku": {
+                "name": "B1",
+                "tier": "Basic",
+                "size": "B1",
+                "capacity": 1
+              },
+              "properties": {
+                "reserved": false
+              }
+            }
+          ],
+          "outputs": {
+            "id": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Web/serverfarms', parameters('appServicePlanName'))]"
+            }
+          }
+        }
+      },
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', format('{0}-{1}-rg', variables('preName'), parameters('suffix')))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "appService",
+      "resourceGroup": "[format('{0}-{1}-rg', variables('preName'), parameters('suffix'))]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "appServiceName": {
+            "value": "[format('{0}-{1}-app', variables('preName'), parameters('suffix'))]"
+          },
+          "location": {
+            "value": "[reference(subscriptionResourceId('Microsoft.Resources/resourceGroups', format('{0}-{1}-rg', variables('preName'), parameters('suffix'))), '2024-03-01', 'full').location]"
+          },
+          "appServicePlanId": {
+            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}-{1}-rg', variables('preName'), parameters('suffix'))), 'Microsoft.Resources/deployments', 'appServicePlan'), '2022-09-01').outputs.id.value]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.26.170.59819",
+              "templateHash": "8081797484298312209"
+            }
+          },
+          "parameters": {
+            "appServiceName": {
+              "type": "string"
+            },
+            "location": {
+              "type": "string",
+              "defaultValue": "[resourceGroup().location]"
+            },
+            "appServicePlanId": {
+              "type": "string"
+            }
+          },
+          "resources": [
+            {
+              "type": "Microsoft.Web/sites",
+              "apiVersion": "2022-03-01",
+              "name": "[parameters('appServiceName')]",
+              "location": "[parameters('location')]",
+              "properties": {
+                "serverFarmId": "[parameters('appServicePlanId')]",
+                "httpsOnly": true
+              },
+              "kind": "app",
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.Web/sites/config",
+              "apiVersion": "2022-03-01",
+              "name": "[format('{0}/{1}', parameters('appServiceName'), 'web')]",
+              "properties": {
+                "alwaysOn": true
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('appServiceName'))]"
+              ]
+            }
+          ]
+        }
+      },
+      "dependsOn": [
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}-{1}-rg', variables('preName'), parameters('suffix'))), 'Microsoft.Resources/deployments', 'appServicePlan')]",
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', format('{0}-{1}-rg', variables('preName'), parameters('suffix')))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "aiSpeechService",
+      "resourceGroup": "[format('{0}-{1}-rg', variables('preName'), parameters('suffix'))]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "speechServiceName": {
+            "value": "[format('{0}-{1}-spk', variables('preName'), parameters('suffix'))]"
+          },
+          "location": {
+            "value": "[reference(subscriptionResourceId('Microsoft.Resources/resourceGroups', format('{0}-{1}-rg', variables('preName'), parameters('suffix'))), '2024-03-01', 'full').location]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.26.170.59819",
+              "templateHash": "11603826968785223815"
+            }
+          },
+          "parameters": {
+            "speechServiceName": {
+              "type": "string"
+            },
+            "location": {
+              "type": "string",
+              "defaultValue": "[resourceGroup().location]"
+            },
+            "skuName": {
+              "type": "string",
+              "defaultValue": "S0"
+            }
+          },
+          "resources": [
+            {
+              "type": "Microsoft.CognitiveServices/accounts",
+              "apiVersion": "2022-12-01",
+              "name": "[parameters('speechServiceName')]",
+              "location": "[parameters('location')]",
+              "kind": "SpeechServices",
+              "sku": {
+                "name": "[parameters('skuName')]"
+              },
+              "properties": {
+                "apiProperties": {
+                  "qnaApiKey": ""
+                }
+              }
+            }
+          ]
+        }
+      },
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', format('{0}-{1}-rg', variables('preName'), parameters('suffix')))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "openAIService",
+      "resourceGroup": "[format('{0}-{1}-rg', variables('preName'), parameters('suffix'))]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "openAIServiceName": {
+            "value": "[format('{0}-{1}-oai', variables('preName'), parameters('suffix'))]"
+          },
+          "location": {
+            "value": "[reference(subscriptionResourceId('Microsoft.Resources/resourceGroups', format('{0}-{1}-rg', variables('preName'), parameters('suffix'))), '2024-03-01', 'full').location]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.26.170.59819",
+              "templateHash": "12417950447666920712"
+            }
+          },
+          "parameters": {
+            "openAIServiceName": {
+              "type": "string"
+            },
+            "location": {
+              "type": "string",
+              "defaultValue": "[resourceGroup().location]"
+            },
+            "skuName": {
+              "type": "string",
+              "defaultValue": "S0"
+            }
+          },
+          "resources": [
+            {
+              "type": "Microsoft.CognitiveServices/accounts",
+              "apiVersion": "2022-12-01",
+              "name": "[parameters('openAIServiceName')]",
+              "location": "[parameters('location')]",
+              "kind": "OpenAI",
+              "sku": {
+                "name": "[parameters('skuName')]"
+              },
+              "properties": {
+                "apiProperties": {
+                  "qnaApiKey": ""
+                }
+              }
+            }
+          ]
+        }
+      },
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', format('{0}-{1}-rg', variables('preName'), parameters('suffix')))]"
+      ]
+    }
+  ]
+}

@@ -3,3 +3,7 @@ git_stuff.md
 /files/*
 .vs/church-speech/DesignTimeBuild/.dtbcache.v2
 .vs/church-speech/v17/.suo
+
+# Ignore Visual Studio index files
+.vs/
+.vsidx
