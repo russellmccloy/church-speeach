@@ -21,10 +21,11 @@ namespace ChurchSpeech.Controllers
             {
                 // Generate a unique filename for the WAV file
                 var wavFileName = Path.GetFileNameWithoutExtension(mp3File.FileName) + ".wav";
-                var wavFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", wavFileName);
+                var relativePath = Path.Combine("uploads", wavFileName);
+                var fullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", relativePath);
 
                 // Ensure the uploads directory exists
-                Directory.CreateDirectory(Path.GetDirectoryName(wavFilePath));
+                Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
 
                 using (var mp3Stream = mp3File.OpenReadStream())
                 using (var mp3Reader = new Mp3FileReader(mp3Stream))
@@ -33,14 +34,15 @@ namespace ChurchSpeech.Controllers
 
                     // Convert MP3 to WAV
                     using (var resampler = new MediaFoundationResampler(mp3Reader, outputFormat))
-                    using (var wavFileStream = new FileStream(wavFilePath, FileMode.Create, FileAccess.Write))
+                    using (var wavFileStream = new FileStream(fullPath, FileMode.Create, FileAccess.Write))
                     {
                         WaveFileWriter.WriteWavFileToStream(wavFileStream, resampler);
                     }
                 }
 
+                // Pass the file path to the view
                 ViewData["Message"] = $"File uploaded and converted to WAV: {wavFileName}";
-                ViewData["FilePath"] = $"/{wavFilePath}";
+                ViewData["FilePath"] = $"/{relativePath}";
             }
             else
             {
