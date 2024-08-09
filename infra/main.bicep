@@ -1,16 +1,23 @@
-param location string // = resourceGroup().location
-
 targetScope = 'subscription'
 
+param location string // = resourceGroup().location
+param prefix string // = resourceGroup().location
+param regionCode string 
+param environment string 
+param suffix string 
+
+var preName = format('{0}-{1}-{2}', prefix , regionCode, environment)
+
+
 resource churchResourceGroup 'Microsoft.Resources/resourceGroups@2024-03-01' = {
-  name: 'churchspeech-ase-dev-rg'
+  name: format('{0}-{1}-rg', preName , suffix)
   location: location
 }
 
 module appServicePlan './modules/appServicePlan.bicep' = {
   name: 'appServicePlan'
   params: {
-    appServicePlanName: 'myAppServicePlan'
+    appServicePlanName: format('{0}-{1}-asp', preName , suffix)
     location: churchResourceGroup.location
   }
   scope: churchResourceGroup
@@ -19,7 +26,7 @@ module appServicePlan './modules/appServicePlan.bicep' = {
 module appService './modules/appService.bicep' = {
   name: 'appService'
   params: {
-    appServiceName: 'myAppService'
+    appServiceName: format('{0}-{1}-app', preName , suffix)
     location: churchResourceGroup.location
     appServicePlanId: appServicePlan.outputs.id
   }
@@ -29,7 +36,7 @@ module appService './modules/appService.bicep' = {
 module aiSpeechService './modules/aiSpeechService.bicep' = {
   name: 'aiSpeechService'
   params: {
-    speechServiceName: 'mySpeechService'
+    speechServiceName: format('{0}-{1}-spk', preName , suffix)
     location: churchResourceGroup.location
   }
   scope: churchResourceGroup
@@ -38,7 +45,7 @@ module aiSpeechService './modules/aiSpeechService.bicep' = {
 module openAIService './modules/openAIService.bicep' = {
   name: 'openAIService'
   params: {
-    openAIServiceName: 'myOpenAIService'
+    openAIServiceName: format('{0}-{1}-oai', preName , suffix)
     location: churchResourceGroup.location
   }
   scope: churchResourceGroup
