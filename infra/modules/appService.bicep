@@ -19,6 +19,6 @@ resource webConfig 'Microsoft.Web/sites/config@2022-03-01' = {
   parent: appService
   name: 'web'
   properties: {
-    alwaysOn: true
+    alwaysOn: false
   }
 }
