@@ -22,7 +22,7 @@ builder.Services.AddControllersWithViews(options =>
 builder.Services.Configure<FormOptions>(options =>
 {
     //options.MultipartBodyLengthLimit = 52428800; // Set limit to 50 MB
-    options.MultipartBodyLengthLimit = 400 * 1024 * 1024; // 400 MB
+    options.MultipartBodyLengthLimit = long.MaxValue;
 });
 
 builder.Services.AddRazorPages()
