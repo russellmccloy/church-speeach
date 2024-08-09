@@ -112,3 +112,7 @@ You can monitor the deployment process directly in the **Actions** tab of your G
 ### Summary
 
 This GitHub Actions workflow provides an automated way to deploy your Bicep templates to Azure. By using a service principal and GitHub secrets, you ensure that your deployment process is secure and can be easily triggered on code changes.
+
+## Useful Links
+
+- [https://learn.microsoft.com/en-us/azure/ai-services/speech-service/speaker-recognition-overview](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/speaker-recognition-overview)
