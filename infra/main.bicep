@@ -42,11 +42,11 @@ module aiSpeechService './modules/aiSpeechService.bicep' = {
   scope: churchResourceGroup
 }
 
-module openAIService './modules/openAIService.bicep' = {
-  name: 'openAIService'
-  params: {
-    openAIServiceName: format('{0}-{1}-oai', preName , suffix)
-    location: churchResourceGroup.location
-  }
-  scope: churchResourceGroup
-}
+// module openAIService './modules/openAIService.bicep' = {
+//   name: 'openAIService'
+//   params: {
+//     openAIServiceName: format('{0}-{1}-oai', preName , suffix)
+//     location: churchResourceGroup.location
+//   }
+//   scope: churchResourceGroup
+// }

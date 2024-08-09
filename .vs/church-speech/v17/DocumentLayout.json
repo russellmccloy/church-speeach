@@ -1,16 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\russe\\code\\church-speech\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\russe\\code\\church-speech\\.github\\workflows\\church-speech-app.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.github\\workflows\\church-speech-app.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5DE77841-37FC-4D2B-A8FF-C71B317CD674}|console\\console.csproj|c:\\users\\russe\\code\\church-speech\\console\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5DE77841-37FC-4D2B-A8FF-C71B317CD674}|console\\console.csproj|solutionrelative:console\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
@@ -18,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 224,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -35,35 +26,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "church-speech-app.yml",
-              "DocumentMoniker": "C:\\Users\\russe\\code\\church-speech\\.github\\workflows\\church-speech-app.yml",
-              "RelativeDocumentMoniker": ".github\\workflows\\church-speech-app.yml",
-              "ToolTip": "C:\\Users\\russe\\code\\church-speech\\.github\\workflows\\church-speech-app.yml",
-              "RelativeToolTip": ".github\\workflows\\church-speech-app.yml",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
-              "WhenOpened": "2024-07-27T01:24:53.913Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\russe\\code\\church-speech\\console\\Program.cs",
-              "RelativeDocumentMoniker": "console\\Program.cs",
-              "ToolTip": "C:\\Users\\russe\\code\\church-speech\\console\\Program.cs",
-              "RelativeToolTip": "console\\Program.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAIAwwDQAAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-26T22:13:39.057Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             }
           ]
         },

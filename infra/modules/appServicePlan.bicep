@@ -2,13 +2,17 @@
 param appServicePlanName string
 param location string = resourceGroup().location
 
-resource appServicePlan 'Microsoft.Web/serverfarms@2022-03-01' = {
+resource appServicePlan 'Microsoft.Web/serverfarms@2022-09-01' = {
   name: appServicePlanName
   location: location
   sku: {
-    name: 'B1' // Basic tier, single instance
-    tier: 'Basic'
-    size: 'B1'
+    // name: 'B1' // Basic tier, single instance
+    // tier: 'Basic'
+    // size: 'B1'
+    // capacity: 1
+    name: 'F1' // Basic tier, single instance
+    tier: 'Free'
+    size: 'F1'
     capacity: 1
   }
   properties: {
