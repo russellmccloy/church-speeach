@@ -4,7 +4,7 @@ on:
     branches:
     - main
 env:
-  AZURE_WEBAPP_NAME: churchspeech-aue-dev-01-app
+  AZURE_WEBAPP_NAME: churchspeech-aue-dev-03-app
   AZURE_WEBAPP_PACKAGE_PATH: ChurchSpeech\published
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 8.0.x
