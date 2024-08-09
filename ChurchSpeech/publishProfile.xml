@@ -1,27 +1,27 @@
 <publishData>
-    <publishProfile profileName="churchspeech-aue-dev-01-app - Web Deploy" publishMethod="MSDeploy"
-        publishUrl="churchspeech-aue-dev-01-app.scm.azurewebsites.net:443"
-        msdeploySite="churchspeech-aue-dev-01-app" userName="$churchspeech-aue-dev-01-app"
+    <publishProfile profileName="churchspeech-aue-dev-03-app - Web Deploy" publishMethod="MSDeploy"
+        publishUrl="churchspeech-aue-dev-03-app.scm.azurewebsites.net:443"
+        msdeploySite="churchspeech-aue-dev-03-app" userName="$churchspeech-aue-dev-03-app"
         userPWD="Rr7o1ebcChZirxohkvbzu1vr4H3uTGjdhqrfLnRclq0YKi7wo0PvdiMoWmud"
-        destinationAppUrl="https://churchspeech-aue-dev-01-app.azurewebsites.net"
+        destinationAppUrl="https://churchspeech-aue-dev-03-app.azurewebsites.net"
         SQLServerDBConnectionString="" mySQLDBConnectionString="" hostingProviderForumLink=""
         controlPanelLink="https://portal.azure.com" webSystem="WebSites">
         <databases />
     </publishProfile>
-    <publishProfile profileName="churchspeech-aue-dev-01-app - FTP" publishMethod="FTP"
+    <publishProfile profileName="churchspeech-aue-dev-03-app - FTP" publishMethod="FTP"
         publishUrl="ftps://waws-prod-sy3-083.ftp.azurewebsites.windows.net/site/wwwroot"
-        ftpPassiveMode="True" userName="churchspeech-aue-dev-01-app\$churchspeech-aue-dev-01-app"
+        ftpPassiveMode="True" userName="churchspeech-aue-dev-03-app\$churchspeech-aue-dev-03-app"
         userPWD="Rr7o1ebcChZirxohkvbzu1vr4H3uTGjdhqrfLnRclq0YKi7wo0PvdiMoWmud"
-        destinationAppUrl="https://churchspeech-aue-dev-01-app.azurewebsites.net"
+        destinationAppUrl="https://churchspeech-aue-dev-03-app.azurewebsites.net"
         SQLServerDBConnectionString="" mySQLDBConnectionString="" hostingProviderForumLink=""
         controlPanelLink="https://portal.azure.com" webSystem="WebSites">
         <databases />
     </publishProfile>
-    <publishProfile profileName="churchspeech-aue-dev-01-app - Zip Deploy" publishMethod="ZipDeploy"
-        publishUrl="churchspeech-aue-dev-01-app.scm.azurewebsites.net:443"
-        userName="$churchspeech-aue-dev-01-app"
+    <publishProfile profileName="churchspeech-aue-dev-03-app - Zip Deploy" publishMethod="ZipDeploy"
+        publishUrl="churchspeech-aue-dev-03-app.scm.azurewebsites.net:443"
+        userName="$churchspeech-aue-dev-03-app"
         userPWD="Rr7o1ebcChZirxohkvbzu1vr4H3uTGjdhqrfLnRclq0YKi7wo0PvdiMoWmud"
-        destinationAppUrl="https://churchspeech-aue-dev-01-app.azurewebsites.net"
+        destinationAppUrl="https://churchspeech-aue-dev-03-app.azurewebsites.net"
         SQLServerDBConnectionString="" mySQLDBConnectionString="" hostingProviderForumLink=""
         controlPanelLink="https://portal.azure.com" webSystem="WebSites">
         <databases />
